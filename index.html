@@ -1,216 +1,151 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SportPulse — Аналітична платформа для спортивних вболівальників</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SportPulse — Аналітична платформа для вболівальників</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: Arial, sans-serif; background:#0a0b0f; color:#f0f0f5; }
+.navbar { padding:1rem 2rem; background:#12131a; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #2a2b3a; position:fixed; width:100%; top:0; z-index:100; }
+.logo { font-size:1.4rem; font-weight:800; color:#00e676; }
+.nav-btn { background:#00e676; color:#0a0b0f; padding:0.5rem 1.2rem; border-radius:50px; text-decoration:none; font-weight:700; }
+.hero { min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:6rem 2rem 4rem; background:linear-gradient(180deg,#0a0b0f,#0d1520,#0a0b0f); }
+.hero-badge { background:rgba(0,230,118,0.1); border:1px solid rgba(0,230,118,0.3); color:#00e676; padding:0.4rem 1rem; border-radius:50px; font-size:0.85rem; display:inline-block; margin-bottom:1.5rem; }
+h1 { font-size:3.5rem; font-weight:900; line-height:1.1; margin-bottom:1.5rem; }
+h1 span { color:#00e676; }
+.hero-sub { font-size:1.2rem; color:#8888a0; max-width:600px; margin:0 auto 2.5rem; }
+.btn-group { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+.btn-primary { background:#00e676; color:#0a0b0f; padding:0.9rem 2rem; border-radius:50px; font-weight:700; font-size:1rem; text-decoration:none; }
+.btn-secondary { border:1px solid #2a2b3a; color:#f0f0f5; padding:0.9rem 2rem; border-radius:50px; font-weight:600; font-size:1rem; text-decoration:none; }
+.stats { display:flex; justify-content:center; gap:3rem; margin-top:4rem; flex-wrap:wrap; }
+.stat-num { font-size:2.5rem; font-weight:900; color:#00e676; }
+.stat-label { color:#8888a0; font-size:0.9rem; }
+.section { padding:6rem 2rem; }
+.section-title { text-align:center; font-size:2.5rem; font-weight:800; margin-bottom:1rem; }
+.section-sub { text-align:center; color:#8888a0; margin-bottom:3rem; }
+.features { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; max-width:1100px; margin:0 auto; }
+.feature-card { background:#1a1b25; border:1px solid #2a2b3a; border-radius:16px; padding:2rem; }
+.feature-icon { font-size:2.5rem; margin-bottom:1rem; }
+.feature-title { font-size:1.2rem; font-weight:700; margin-bottom:0.5rem; }
+.feature-desc { color:#8888a0; line-height:1.6; }
+.pricing { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; max-width:900px; margin:0 auto; }
+.price-card { background:#1a1b25; border:1px solid #2a2b3a; border-radius:16px; padding:2rem; text-align:center; }
+.price-card.popular { border-color:#00e676; }
+.price-badge { background:#00e676; color:#0a0b0f; padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:700; display:inline-block; margin-bottom:1rem; }
+.price { font-size:3rem; font-weight:900; color:#00e676; }
+.price span { font-size:1rem; color:#8888a0; }
+.price-features { list-style:none; margin:1.5rem 0; text-align:left; }
+.price-features li { padding:0.4rem 0; color:#8888a0; }
+.price-features li::before { content:"✓ "; color:#00e676; }
+.cta-section { background:#12131a; padding:6rem 2rem; text-align:center; border-top:1px solid #2a2b3a; }
+.cta-title { font-size:2.5rem; font-weight:800; margin-bottom:1rem; }
+.cta-sub { color:#8888a0; margin-bottom:2rem; }
+footer { background:#0a0b0f; padding:2rem; text-align:center; color:#55556a; border-top:1px solid #1a1b25; }
+@media(max-width:768px) { h1{font-size:2.2rem;} .stats{gap:1.5rem;} }
+</style>
+</head>
+<body>
 
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<nav class="navbar">
+  <div class="logo">⚡ SportPulse</div>
+  <a href="#pricing" class="nav-btn">Почати безкоштовно</a>
+</nav>
 
-        :root {
-            --bg-primary: #0a0b0f;
-            --bg-secondary: #12131a;
-            --bg-card: #1a1b25;
-            --bg-card-hover: #22232f;
-            --accent: #00e676;
-            --accent-dim: rgba(0, 230, 118, 0.15);
-            --accent-secondary: #00bfa5;
-            --text-primary: #f0f0f5;
-            --text-secondary: #8888a0;
-            --text-muted: #55556a;
-            --border: #2a2b3a;
-            --gradient-1: linear-gradient(135deg, #00e676, #00bfa5);
-            --gradient-2: linear-gradient(135deg, #00e676, #1de9b6, #00bfa5);
-            --gradient-hero: linear-gradient(180deg, #0a0b0f 0%, #0d1520 50%, #0a0b0f 100%);
-            --shadow-glow: 0 0 40px rgba(0, 230, 118, 0.2);
-            --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3);
-        }
+<section class="hero">
+  <div>
+    <div class="hero-badge">🏆 #1 Платформа для спортивних вболівальників</div>
+    <h1>Аналітика матчів.<br><span>Точні прогнози.</span><br>Спільнота.</h1>
+    <p class="hero-sub">SportPulse поєднує машинне навчання, детальну статистику та активну спільноту в одному зручному інтерфейсі.</p>
+    <div class="btn-group">
+      <a href="#pricing" class="btn-primary">Спробувати безкоштовно →</a>
+      <a href="#features" class="btn-secondary">Дізнатись більше</a>
+    </div>
+    <div class="stats">
+      <div><div class="stat-num">50K+</div><div class="stat-label">Активних користувачів</div></div>
+      <div><div class="stat-num">87%</div><div class="stat-label">Точність прогнозів</div></div>
+      <div><div class="stat-num">200+</div><div class="stat-label">Ліг і турнірів</div></div>
+    </div>
+  </div>
+</section>
 
-        html {
-            scroll-behavior: smooth;
-        }
+<section class="section" id="features">
+  <h2 class="section-title">Все що потрібно вболівальнику</h2>
+  <p class="section-sub">Потужні інструменти для глибокого аналізу спорту</p>
+  <div class="features">
+    <div class="feature-card">
+      <div class="feature-icon">🤖</div>
+      <div class="feature-title">AI Прогнози</div>
+      <div class="feature-desc">Алгоритми машинного навчання аналізують форму команд, статистику гравців і погодні умови для точних прогнозів.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <div class="feature-title">Детальна статистика</div>
+      <div class="feature-desc">Глибокий аналіз кожного матчу — від базових показників до просунутих метрик xG, PPDA та інших.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">👥</div>
+      <div class="feature-title">Спільнота</div>
+      <div class="feature-desc">Обговорюй матчі з однодумцями, діліться прогнозами і змагайся в таблиці лідерів.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔔</div>
+      <div class="feature-title">Живі сповіщення</div>
+      <div class="feature-desc">Отримуй миттєві сповіщення про голи, червоні картки та зміни у матчах які тебе цікавлять.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🌍</div>
+      <div class="feature-title">200+ Ліг</div>
+      <div class="feature-desc">Покриваємо понад 200 ліг і турнірів з усього світу — від Прем'єр-ліги до Ліги чемпіонів.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📱</div>
+      <div class="feature-title">Мобільний додаток</div>
+      <div class="feature-desc">Повноцінний доступ до всіх функцій з телефону. iOS і Android.</div>
+    </div>
+  </div>
+</section>
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+<section class="section" id="pricing" style="background:#0d0e14;">
+  <h2 class="section-title">Прозорі ціни</h2>
+  <p class="section-sub">Почни безкоштовно, розширюй коли потрібно</p>
+  <div class="pricing">
+    <div class="price-card">
+      <h3>Безкоштовно</h3>
+      <div class="price">$0<span>/міс</span></div>
+      <ul class="price-features">
+        <li>5 прогнозів на день</li>
+        <li>Базова статистика</li>
+        <li>Доступ до спільноти</li>
+        <li>10 улюблених команд</li>
+      </ul>
+      <a href="https://t.me/aibusiness_os_bot" class="btn-primary" style="display:block;">Почати →</a>
+    </div>
+    <div class="price-card popular">
+      <div class="price-badge">⭐ Популярний</div>
+      <h3>Pro</h3>
+      <div class="price">$19<span>/міс</span></div>
+      <ul class="price-features">
+        <li>Необмежені прогнози</li>
+        <li>Повна статистика</li>
+        <li>AI аналітика матчів</li>
+        <li>Пріоритетні сповіщення</li>
+        <li>Експорт даних</li>
+      </ul>
+      <a href="https://t.me/aibusiness_os_bot" class="btn-primary" style="display:block;">Спробувати Pro →</a>
+    </div>
+  </div>
+</section>
 
-        /* ========== NAVBAR ========== */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1rem 2rem;
-            background: rgba(10, 11, 15, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: all 0.3s ease;
-        }
+<section class="cta-section">
+  <h2 class="cta-title">Готовий аналізувати спорт як профі?</h2>
+  <p class="cta-sub">Приєднуйся до 50,000+ вболівальників які вже використовують SportPulse</p>
+  <a href="https://t.me/aibusiness_os_bot" class="btn-primary">Почати безкоштовно →</a>
+</section>
 
-        .navbar.scrolled {
-            padding: 0.7rem 2rem;
-            background: rgba(10, 11, 15, 0.95);
-        }
+<footer>
+  <p>© 2026 SportPulse. Всі права захищені. | <a href="https://t.me/aibusiness_os_bot" style="color:#00e676;">Контакт</a></p>
+</footer>
 
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 1.4rem;
-            color: var(--text-primary);
-        }
-
-        .nav-logo-icon {
-            width: 36px;
-            height: 36px;
-            background: var(--gradient-1);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
-        .nav-cta {
-            background: var(--gradient-1);
-            color: #0a0b0f !important;
-            padding: 0.55rem 1.4rem;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.85rem;
-            transition: transform 0.3s, box-shadow 0.3s !important;
-        }
-
-        .nav-cta:hover {
-            transform: scale(1.05);
-            box-shadow: var(--shadow-glow);
-        }
-
-        .nav-hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            background: none;
-            border: none;
-        }
-
-        .nav-hamburger span {
-            width: 26px;
-            height: 2px;
-            background: var(--text-primary);
-            border-radius: 2px;
-            transition: 0.3s;
-        }
-
-        /* ========== HERO ========== */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            padding: 8rem 2rem 4rem;
-            background: var(--gradient-hero);
-            overflow: hidden;
-        }
-
-        .hero-bg-grid {
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(0, 230, 118, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 230, 118, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
-            mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
-            -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
-        }
-
-        .hero-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.4;
-            animation: orbFloat 8s ease-in-out infinite;
-        }
-
-        .hero-orb-1 {
-            width: 500px;
-            height: 500px;
-            background: rgba(0, 230, 118, 0.15);
-            top: -10%;
-            right: -5%;
-            animation-delay: 0s;
-        }
-
-        .hero-orb-2 {
-            width: 400px;
-            height: 400px;
-            background: rgba(0, 191, 165, 0.12);
-            bottom: -10%;
-            left: -5%;
-            animation-delay: -4s;
-        }
-
-        .hero-orb-3 {
-            width: 250px;
-            height: 250px;
-            background: rgba(29, 233, 182, 0.1);
-            top: 40%;
-            left: 30%;
-            animation-delay: -2s;
-        }
-
-        @keyframes orbFloat {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(30px, -20px) scale(1.05); }
-            66% { transform: translate(-20px, 20px) scale(0.95); }
-        }
-
-        .hero-content {
-            max-width: 900px;
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--accent
+</body>
+</html>
